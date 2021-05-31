@@ -1,7 +1,7 @@
 function runAjax() {
 	$('table.vaccine-table').remove();
-	var dose = $('input[name="dose"]').val();
-	var available_capacity = 'available_capacity_' + dose;
+	var dose = $('select[name="dose"]').val();
+	var capacity;
 	var vaccines_found = false;
 	var date = new Date();
 	var str_date = date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
@@ -15,7 +15,11 @@ function runAjax() {
 					var count = 1;
 					result.centers.forEach(function(center) {
 						center.sessions.forEach(function(session) {
-							if ((session.available_capacity > 0) && (session.min_age_limit <= $('input[name="age"]').val())) {
+							capacity = session.available_capacity_dose1;
+							if (dose == 'dose2') {
+								capacity =  session.available_capacity_dose2;
+							}
+							if ((capacity > 0) && (session.min_age_limit <= $('input[name="age"]').val())) {
 		            vaccines_found = true;
 		            var table_class = 'table-primary';
 		            if (count % 2 === 0) {
@@ -30,7 +34,7 @@ function runAjax() {
 		            $('.vaccine-table tbody tr:nth-child(' + count + ')').append('<td>' + $('input[name="pincode"]').val() + '</td>');
 		            $('.vaccine-table tbody tr:nth-child(' + count + ')').append('<td>' + session.date + '</td>');
 		            $('.vaccine-table tbody tr:nth-child(' + count + ')').append('<td>' + session.min_age_limit + '+' + '</td>');
-		            $('.vaccine-table tbody tr:nth-child(' + count + ')').append('<td>' + session.available_capacity + '</td>');
+		            $('.vaccine-table tbody tr:nth-child(' + count + ')').append('<td>' + capacity + '</td>');
 		            $('.vaccine-table tbody tr:nth-child(' + count + ')').append('<td>' + session.vaccine + '</td>');
 		            $('.vaccine-table tbody tr:nth-child(' + count + ')').append('<td>' + center.fee_type + '</td>');
 		            $('.vaccine-table tbody tr:nth-child(' + count + ')').append('<td>' + center.name + '</td>');
