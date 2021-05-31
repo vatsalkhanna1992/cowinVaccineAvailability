@@ -1,0 +1,15 @@
+h2 {
+	color: blue;
+}
+
+form .row .col-xs-12 {
+	padding: 10px;
+}
+
+form label {
+	width: 100px;
+}
+
+h3.result {
+	padding-bottom: 20px;
+}
