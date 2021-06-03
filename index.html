@@ -5,14 +5,21 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="script.js"></script>
-		<link href="style.css" rel="stylesheet">
+		<script type="text/javascript" src="js/script.js"></script>
+		<script>
+			$(document).ajaxStart(function() {
+		    $('.submit-container img').show();
+	    }).ajaxSuccess(function() {
+	      $('.submit-container img').hide();
+	    });
+	   </script>
+		<link href="css/style.css" rel="stylesheet" />
 	</head>
 	<body>
 		<div class="container">
-			<h2>Find vaccines</h2>
+			<h2 class="blue-heading">Find vaccines</h2>
 			<form method="post" class="vaccine-form" onsubmit="findVaccinesByPincode(); return false;">
-				<div class="row">
+				<div class="row">	
 					<div class="col-xs-12">
 						<label>PIN Code</label>
 						<input type="text" name="pincode" maxlength="6" required/>
@@ -32,12 +39,15 @@
 						</select>
 					</div>
 					<div class="col-xs-12">
-						<input type="submit" class="submit-button"/>
+						<div class="submit-container">
+							<input type="submit" class="submit-button"/>
+							<img src="images/loader.gif" />
+						</div>
 					</div>
 				</div>
 			</form>
 			<div class="vaccine-results">
-				<h3 class="result"></h3>
+				<h3 class="result blue-heading"></h3>
 			</div>
 			<div class="col-xs-12">
 				<a href="/district-search.html">Search by District</a>

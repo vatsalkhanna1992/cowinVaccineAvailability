@@ -1,5 +1,5 @@
-h2 {
-	color: blue;
+.blue-heading {
+	color: #1f66f4;
 }
 
 form .row .col-xs-12 {
@@ -12,4 +12,10 @@ form label {
 
 h3.result {
 	padding-bottom: 20px;
+}
+
+.submit-container img {
+	display: none;
+	width: 30px;
+    margin-left: 20px;
 }
